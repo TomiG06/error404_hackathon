@@ -1,0 +1,16 @@
+version: '3.2'
+
+services:
+  db:
+    image: mysql
+    restart: always
+    ports:
+      - 33060:3306
+    container_name: error404DB
+    environment:
+      MYSQL_ROOT_PASSWORD: hackathonUser1234
+      MYSQL_DATABASE: hackathonError404
+      MYSQL_USER: hackathonUser
+      MYSQL_PASSWORD: hackathonUser1234
+    volumes:
+      - ./initdb:/docker-entrypoint-initdb.d
