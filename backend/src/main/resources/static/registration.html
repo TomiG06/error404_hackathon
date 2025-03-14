@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Page</title>
+    <link rel="stylesheet" href="registration.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Back button - updated to a simple arrow in a circle -->
+    <div class="back-button-container">
+        <a href="index.html" class="back-button" aria-label="Go back">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+    </div>
+    
+    <!-- Theme toggle button -->
+    <div class="theme-toggle-container">
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
+    
+    <h2>Create Account</h2>
+    <form id="registrationForm" action="#" method="POST">
+        <div>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <button type="submit">Register</button>
+    </form>
+    <script src="navigation.js"></script>
+    <script src="registration.js"></script>
+    <script src="theme-toggle.js"></script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="contact.css"> <!-- Link to the new CSS file -->
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body> 
+    <header>
+        <nav>
+            <!-- Theme toggle button -->
+            <div class="theme-toggle-container">
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+
+            <table width="100%" border="0" cellpadding="10" cellspacing="0">
+                <tr>
+                    <td><a href="index.html">Home</a></td>
+                    <td><a href="about.html">About</a></td>
+                    <td><a href="services.html">Services</a></td>
+                    <td><a href="contact.html">Contact</a></td>
+                    <td align="right"><a href="registration.html">Register</a></td>
+                </tr>
+            </table>
+        </nav>
+    </header>
+    
+    <main>
+        <h1>Contact Us</h1>
+        <p>We'd love to hear from you! Please fill out the form below to get in touch.</p>
+        
+        <!-- Contact Form -->
+        <form action="#" method="post">
+            <div>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div>
+                <label for="subject">Subject:</label>
+                <input type="text" id="subject" name="subject" required>
+            </div>
+            <div>
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+            </div>
+            <div>
+                <button type="submit">Send Message</button>
+            </div>
+        </form>
+
+        <!-- Team Section -->
+        <section class="team-section">
+            <h2>Our Team</h2>
+            <div class="team-members">
+                <!-- Team Member 1 -->
+                <div class="team-member">
+                    <img src="team-member1.jpg" alt="Team Member 1" class="team-member-img">
+                    <h3>Ιωάννης Βογγέλης</h3>
+                    <p class="role">Frontend</p>
+                    <p class="description">React and desing.</p>
+                </div>
+
+                <!-- Team Member 2 -->
+                <div class="team-member">
+                    <img src="team-member2.jpg" alt="Team Member 2" class="team-member-img">
+                    <h3>Θωμάς Γκούντας</h3>
+                    <p class="role">Backend</p>
+                    <p class="description">Javaspring and sql.</p>
+                </div>
+
+                <!-- Team Member 3 -->
+                <div class="team-member">
+                    <img src="team-member3.jpg" alt="Team Member 3" class="team-member-img">
+                    <h3>Θανάσης Γιαννόπουλος</h3>
+                    <p class="role">Backend</p>
+                    <p class="description">Javaspring and sql.</p>
+                </div>
+
+                <!-- Team Member 4 -->
+                <div class="team-member">
+                    <img src="team-member4.jpg" alt="Team Member 4" class="team-member-img">
+                    <h3>Ιωάννης Μορφίδης</h3>
+                    <p class="role">Frontend</p>
+                    <p class="description">Html, CSS and Javascript.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer class="footer-content">
+        <!-- Error and 404 Section -->
+        <div class="error-section">
+            <h2>Error</h2>
+            <div class="footer-404">404</div>
+        </div>
+    
+        <!-- Social Media Links and Let's Connect Section -->
+        <div class="social-section">
+            <div class="footer-links">
+                <a href="mailto:example@example.com" class="footer-link">
+                    <img src="email.png" alt="email" class="email-icon" style="width: 40px; height:30px;">
+                </a>
+                <a href="https://www.instagram.com" class="footer-link">
+                    <img src="instagram.png" alt="instagram">
+                </a>
+                <a href="https://www.linkedin.com" class="footer-link">
+                    <img src="linkedin.png" alt="linkedin">
+                </a>
+            </div>
+            <h3>Let's Connect</h3>
+        </div>
+    </footer>
+    <script src="theme-toggle.js"></script>
+    <script src="index.js"></script>
+    <script src="contact.js"></script>
+</body>
+</html>
