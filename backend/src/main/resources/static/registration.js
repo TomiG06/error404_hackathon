@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
         statusMessage.style.color = '#666';
 
         // Make API call to check email availability
-        fetch('https://your-backend-api-url.com/check-email', {
+        fetch('http://localhost:8080/check-email', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function () {
         };
 
         // Send data to backend using fetch API
-        fetch('https://your-backend-api-url.com/register', {
+        fetch('http://localhost:8080/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

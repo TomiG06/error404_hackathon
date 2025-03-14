@@ -1,9 +1,14 @@
 package error404.hackathon.domains;
 
+import java.util.HashSet;
+import java.util.Set;
+
+// import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
+
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="userentity")
+@Table(name="user")
 public class UserDomain {
     
     @Id
@@ -19,6 +24,22 @@ public class UserDomain {
 
     @Column(name="password_hash")
     private String password;
+
+    @ManyToMany
+    @JoinTable(
+        name = "user_likes",
+        joinColumns = @JoinColumn(name = "liker_id"),
+        inverseJoinColumns = @JoinColumn(name = "liked_id")
+    )
+    private Set<UserDomain> likedUsers = new HashSet<>();
+
+    @ManyToMany(mappedBy = "likedUsers")
+    private Set<UserDomain> likedByUsers = new HashSet<>();
+
+    public void likeUser(UserDomain likedUser){
+        likedByUsers.add(likedUser);
+    }
+
 
     public UserDomain(String username, String email, String password) {
         this.username = username;
@@ -40,5 +61,13 @@ public class UserDomain {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Set<UserDomain> getLikedUsers(){
+        return this.likedUsers;
+    }
+
+    public Set<UserDomain> getLikedByUsers(){
+        return this.likedByUsers;
     }
 }
