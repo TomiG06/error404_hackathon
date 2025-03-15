@@ -1,16 +1,25 @@
-CREATE TABLE user (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE users (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(100) NOT NULL,
     password_hash VARCHAR(100) NOT NULL,
-    email VARCHAR(100) NOT NULL UNIQUE
+    email VARCHAR(100) NOT NULL,
+    phone VARCHAR(100) NOT NULL,
+    insta VARCHAR(100) NULL,
+    facebook VARCHAR(100) NULL 
 );
 
-CREATE TABLE user_likes (
-    liker_id BIGINT NOT NULL,
-    liked_id BIGINT NOT NULL,
-    PRIMARY KEY (liker_id, liked_id),
-    FOREIGN KEY (liker_id) REFERENCES userentity(id) ON DELETE CASCADE,
-    FOREIGN KEY (liked_id) REFERENCES userentity(id) ON DELETE CASCADE,
-    CHECK (liker_id <> liked_id)
+CREATE TABLE posts {
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    content TEXT NOT NULL,
+    user_id BIGINT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+}
+
+CREATE TABLE user_liked_post (
+    user_id BIGINT NOT NULL,
+    post_id BIGINT NOT NULL,
+    PRIMARY KEY (user_id, post_id),
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (post_id) REFERENCES posts(id) ON DELETE CASCADE
 );
 
