@@ -32,6 +32,9 @@ public class User {
     @Column 
     private String phone;
 
+    @Column(name = "password_hashed")
+    private String password;
+
     // One user can create multiple posts
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Post> posts = new HashSet<>();
@@ -48,23 +51,26 @@ public class User {
 
     public User() {}
 
-    public User(String username, String email) {
+    public User(String username, String email, String password) {
         this.username = username;
         this.email = email;
+        this.password = password;
     }
 
-    public User(String username, String email, String facebook) {
+    public User(String username, String email, String facebook, String password) {
         this.username = username;
         this.email = email;
         this.facebook = facebook;
+        this.password = password;
     }
 
-    public User(String username, String email, String insta, String facebook, String phone) {
+    public User(String username, String email, String insta, String facebook, String phone, String password) {
         this.username = username;
         this.email = email;
         this.insta = insta;
         this.facebook = facebook;
         this.phone = phone;
+        this.password = password;
     }
 
     // Getters and Setters
