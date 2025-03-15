@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tinder Clone</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="match.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Theme toggle button -->
+    <div class="theme-toggle-container">
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
+
+    <header>
+        <nav>
+            <table width="100%" border="0" cellpadding="10" cellspacing="0">
+                <tr>
+                    <td><a href="index.html">Home</a></td>
+                    <td><a href="about.html">About</a></td>
+                    <td><a href="match.html">Find Appartment</a></td>
+                    <td><a href="contact.html">Contact</a></td>
+                    <td align="right"><a href="registration.html">Register</a></td>
+                </tr>
+            </table>
+        </nav>
+    </header>
+
+    <main>
+        <div class="tinder-container">
+            <!-- Left side: Photos section -->
+            <div class="photos-section">
+                <div class="photo-container">
+                    <img src="download (2).jpg" alt="Profile 1" class="profile-photo">
+                    <div class="photo-overlay">
+                        <h2>Jane Doe, 28</h2>
+                        <p>5 miles away</p>
+                    </div>
+                    <button class="close-button" aria-label="Close expanded photo">×</button>
+                </div>
+                <div class="photo-container">
+                    <img src="download.jpg" alt="Profile 2" class="profile-photo">
+                    <div class="photo-overlay">
+                        <h2>John Smith, 32</h2>
+                        <p>3 miles away</p>
+                    </div>
+                    <button class="close-button" aria-label="Close expanded photo">×</button>
+                </div>
+                <div class="photo-container">
+                    <img src="download (1).jpg" alt="Profile 3" class="profile-photo">
+                    <div class="photo-overlay">
+                        <h2>Emily Johnson, 26</h2>
+                        <p>7 miles away</p>
+                    </div>
+                    <button class="close-button" aria-label="Close expanded photo">×</button>
+                </div>
+                <div class="photo-container">
+                    <img src="download(3).jpg" alt="Profile 4" class="profile-photo">
+                    <div class="photo-overlay">
+                        <h2>Michael Brown, 30</h2>
+                        <p>2 miles away</p>
+                    </div>
+                    <button class="close-button" aria-label="Close expanded photo">×</button>
+                </div>
+                <div class="photo-container">
+                    <img src="download (4).jpg" alt="Profile 5" class="profile-photo">
+                    <div class="photo-overlay">
+                        <h2>Sarah Wilson, 27</h2>
+                        <p>8 miles away</p>
+                    </div>
+                    <button class="close-button" aria-label="Close expanded photo">×</button>
+                </div>
+            </div>
+
+            <!-- Right side: Profile description -->
+            <div class="profile-section">
+                <div class="profile-header">
+                    <h2 class="profile-name">Jane Doe, 28</h2>
+                    <p class="profile-location"><i class="fas fa-map-marker-alt"></i> 5 miles away</p>
+                </div>
+
+                <div class="profile-bio">
+                    <h3>About Me</h3>
+                    <p>Adventure seeker, coffee enthusiast, and dog lover. Looking for someone to explore the city with and have meaningful conversations.</p>
+
+                    <h3>Interests</h3>
+                    <div class="interest-tags">
+                        <span class="interest-tag">Hiking</span>
+                        <span class="interest-tag">Photography</span>
+                        <span class="interest-tag">Travel</span>
+                        <span class="interest-tag">Reading</span>
+                        <span class="interest-tag">Cooking</span>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="action-button skip-button" id="skip-button">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <button class="action-button like-button" id="like-button">
+                        <i class="fas fa-heart"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Characteristics-->
+        <div class="characteristics">
+            <span class="interest-tag">Woman Wanted</span>
+            <span class="interest-tag">Close to Uni</span>
+            <span class="interest-tag">Modern</span>
+            <span class="interest-tag">Fully furnished</span>
+            <span class="interest-tag">Balcony</span>
+            <span class="interest-tag">Quiet neighborhood</span>
+            <span class="interest-tag">Budget-friendly</span>
+            <span class="interest-tag">Male wanted</span>
+        </div>
+
+        <!--Extras-->
+        <div id="match-characteristics">
+            <h2>More Characteristics:</h2>
+            <input type="text" id="featureInput" placeholder="Type here...">
+            <button onclick="addFeature()">Add</button>
+            <ul id="feature-list"></ul>
+        </div>
+    </main>
+
+    <footer class="footer-content">
+        <!-- Error and 404 Section -->
+        <div class="error-section">
+            <h2>Error</h2>
+            <div class="footer-404">404</div>
+        </div>
+
+        <div class="social-section">
+            <div class="footer-links">
+                <a href="mailto:example@example.com" class="footer-link">
+                    <img src="email.png" alt="email" class="email-icon" style="width: 40px; height:30px;">
+                </a>
+                <a href="https://www.instagram.com" class="footer-link">
+                    <img src="instagram.png" alt="instagram">
+                </a>
+                <a href="https://www.linkedin.com" class="footer-link">
+                    <img src="linkedin.png" alt="linkedin">
+                </a>
+            </div>
+            <h3>Let's Connect</h3>
+        </div>
+    </footer>
+    <script src="extras.js"></script>
+    <script src="index.js"></script>
+    <script src="theme-toggle.js"></script>
+    <script src="match.js"></script>
+</body>
+</html>
