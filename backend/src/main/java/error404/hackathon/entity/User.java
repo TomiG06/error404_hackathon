@@ -23,6 +23,15 @@ public class User {
     @Column(unique = true, nullable = false)
     private String email;
 
+    @Column
+    private String facebook;
+
+    @Column
+    private String insta;
+
+    @Column 
+    private String phone;
+
     // One user can create multiple posts
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Post> posts = new HashSet<>();
@@ -44,6 +53,20 @@ public class User {
         this.email = email;
     }
 
+    public User(String username, String email, String facebook) {
+        this.username = username;
+        this.email = email;
+        this.facebook = facebook;
+    }
+
+    public User(String username, String email, String insta, String facebook, String phone) {
+        this.username = username;
+        this.email = email;
+        this.insta = insta;
+        this.facebook = facebook;
+        this.phone = phone;
+    }
+
     // Getters and Setters
     public Long getId() { return id; }
     public void setId(long id) { this.id = id; }
@@ -59,4 +82,13 @@ public class User {
 
     public Set<Post> getLikedPosts() { return likedPosts; }
     public void setLikedPosts(Set<Post> likedPosts) { this.likedPosts = likedPosts; }
+
+    public String getFacebook() { return facebook; }
+    public void setFacebook(String facebook) { this.facebook = facebook; }
+
+    public String getInsta() { return insta; }
+    public void setinsta(String insta) { this.insta = insta; }
+
+    public String getPhone() { return phone; }
+    public void setPhone(String phone) { this.phone = phone; }
 }
