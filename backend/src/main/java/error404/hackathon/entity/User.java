@@ -3,6 +3,8 @@ package error404.hackathon.entity;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 // import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
 
 import jakarta.persistence.*;
@@ -27,6 +29,7 @@ public class User {
 
     // Posts that this user liked
     @ManyToMany
+    @JsonManagedReference
     @JoinTable(
         name = "user_liked_posts",
         joinColumns = @JoinColumn(name = "user_id"),
