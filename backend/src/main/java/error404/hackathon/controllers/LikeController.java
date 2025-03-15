@@ -25,18 +25,18 @@ public class LikeController {
     private LikeService likeService;
 
     @PostMapping("/{likedId}")
-    public ResponseEntity<String> likeUser(@RequestParam int likerId, @PathVariable int likedId) {
+    public ResponseEntity<String> likeUser(@RequestParam("likerId") int likerId, @PathVariable("likebyId") int likedId) {
         likeService.likeUser(likerId, likedId);
         return ResponseEntity.ok("User liked");
     }
 
     @GetMapping("/liked/{userId}")
-    public ResponseEntity<Set<UserDomain>> getLikedUsers(@PathVariable int userId) {
+    public ResponseEntity<Set<UserDomain>> getLikedUsers(@PathVariable("userId") int userId) {
         return ResponseEntity.ok(likeService.getLikedUsers(userId));
     }
 
     @GetMapping("/liked-by/{userId}")
-    public ResponseEntity<Set<UserDomain>> getLikedByUsers(@PathVariable int userId) {
+    public ResponseEntity<Set<UserDomain>> getLikedByUsers(@PathVariable("userId") int userId) {
         return ResponseEntity.ok(likeService.getLikedByUsers(userId));
     }
 }
