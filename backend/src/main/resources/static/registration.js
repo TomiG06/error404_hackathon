@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function () {
         };
 
         // Send data to backend using fetch API
-        fetch('http://localhost:8080/api/users/createUser', {
+        fetch('http://localhost:8080/api/users', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
