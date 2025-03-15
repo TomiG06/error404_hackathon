@@ -33,6 +33,6 @@ document.addEventListener('DOMContentLoaded', function () {
         userRegisterTd.appendChild(userCircle);
     } else {
         // If no user data exists, show the Register button
-        userRegisterTd.innerHTML = '<a href="registration-pageDark.html">Register</a>';
+        userRegisterTd.innerHTML = '<a href="index.html">Register</a>';
     }
 });
