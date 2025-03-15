@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const profileSection = document.querySelector('.profile-section');
 
     // Backend API URL - Replace with your actual API endpoint
-    const API_URL = 'http://localhost:8080/liked/userid';
+    const API_URL = 'http://localhost:8080/api/users';
 
     // Track current profile
     let currentProfileIndex = 0;

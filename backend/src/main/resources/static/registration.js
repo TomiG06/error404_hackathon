@@ -93,13 +93,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Create the data object to send to backend
         const userData = {
-            username: username,
-            email: email,
-            password: password,
+            username: "John",
+            email: "test@gmail.com",
         };
 
         // Send data to backend using fetch API
-        fetch('http://localhost:8080/register', {
+        fetch('http://localhost:8080/api/users/createUser', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
