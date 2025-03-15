@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const profileSection = document.querySelector('.profile-section');
 
     // Backend API URL - Replace with your actual API endpoint
-    const API_URL = 'http://localhost:8080/api/users';
+    const API_URL = 'http://localhost:8080/api/users/{userId}/like/{postId}';
 
     // Track current profile
     let currentProfileIndex = 0;
@@ -101,10 +101,11 @@ document.addEventListener('DOMContentLoaded', function () {
         
         // Create like data
         const likeData = {
-            userId: currentUserId,
-            likedProfile: profile.name, // Assuming name is unique identifier
-            profileIndex: profileIndex,
-            timestamp: new Date().toISOString()
+            userId: "7",
+            postId: "1",
+            //likedProfile: profile.name, // Assuming name is unique identifier
+            //profileIndex: profileIndex,
+            //timestamp: new Date().toISOString()
         };
         
         // Send the data to your backend
