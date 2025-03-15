@@ -32,7 +32,7 @@ public class User {
     @Column 
     private String phone;
 
-    @Column(name = "password_hashed")
+    @Column(name = "password_hash")
     private String password;
 
     // One user can create multiple posts
