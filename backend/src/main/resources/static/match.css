@@ -1,0 +1,1006 @@
+/* Theme variables - MUST be at the top of the file */
+:root {
+    /* Light mode colors (default) */
+    --bg-color: #f8ebe0;
+    --header-bg: #132f58;
+    --text-color: #333333;
+    --heading-color: #0a192f;
+    --nav-text: #f5f5f5;
+    --nav-text-hover: #ffffff;
+    --button-bg: #f5f5f5;
+    --button-text: #0a192f;
+    --button-hover-bg: #ffffff;
+    --underline-color: #f5f5f5;
+    --active-underline: #ffffff;
+    --shadow-color: rgba(0, 0, 0, 0.2);
+    --shadow-hover-color: rgba(0, 0, 0, 0.3);
+    
+    /* Tinder specific colors */
+    --card-bg: #ffffff;
+    --skip-button-bg: #fe3c72;
+    --like-button-bg: #35c759;
+    --overlay-bg: rgba(0, 0, 0, 0.5);
+    --tag-bg: #e8f5ff;
+    --tag-color: #0a67b5;
+}
+
+/* Dark mode colors */
+[data-theme="dark"] {
+    --bg-color: #121212;
+    --header-bg: #0a192f;
+    --text-color: #e0e0e0;
+    --heading-color: #8ba8d8;
+    --nav-text: #d0d0d0;
+    --nav-text-hover: #ffffff;
+    --button-bg: #2c4f82;
+    --button-text: #ffffff;
+    --button-hover-bg: #3a6bad;
+    --underline-color: #5d89c9;
+    --active-underline: #7aa0e0;
+    --shadow-color: rgba(0, 0, 0, 0.4);
+    --shadow-hover-color: rgba(0, 0, 0, 0.6);
+    
+    /* Tinder specific colors - dark mode */
+    --card-bg: #1e1e1e;
+    --skip-button-bg: #e91e63;
+    --like-button-bg: #2d9b4e;
+    --overlay-bg: rgba(0, 0, 0, 0.7);
+    --tag-bg: #213547;
+    --tag-color: #8bb9e0;
+}
+
+/* Theme toggle button styling */
+.theme-toggle-container {
+    position: absolute; /* Absolute positioning within the navigation bar */
+    top: 10px; /* Position at the top of the navigation bar */
+    right: 20px; /* Adjust this value to move it left or right */
+    z-index: 1000; /* Ensure it's above other elements */
+}
+
+.theme-toggle {
+    background-color: transparent;
+    border: 2px solid var(--nav-text);
+    color: var(--nav-text);
+    font-size: 18px;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.theme-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1); /* Scale effect on hover */
+}
+
+.theme-toggle:active {
+    transform: scale(0.95); /* Press effect */
+}
+
+/* Original styles updated to use CSS variables */
+body {
+    font-family: Georgia, serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+header {
+    background-color: var(--header-bg);
+    padding: 20px 0; /* Increased padding for larger header */
+    transition: background-color 0.3s ease;
+}
+
+nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative; /* Added for absolute positioning of theme toggle */
+}
+
+nav table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed; /* Fixed layout to prevent shifting */
+}
+
+nav td {
+    padding: 10px 20px; /* Increased horizontal padding */
+    text-align: center; /* Center the text to prevent shifting */
+}
+
+nav a {
+    color: var(--nav-text);
+    text-decoration: none;
+    font-size: 22px; /* Bigger font size */
+    transition: color 0.4s cubic-bezier(0.215, 0.61, 0.355, 1); /* Only animate color, not size */
+    position: relative; /* For custom underline */
+    padding-bottom: 4px; /* Space for underline */
+    display: inline-block; /* Prevent text shifting */
+}
+
+/* Bold text on hover with stable positioning */
+nav a:hover {
+    color: var(--nav-text-hover);
+    font-weight: bold;
+}
+
+/* Fix width to prevent shifting when font-weight changes */
+nav a:before {
+    display: block;
+    content: attr(title);
+    font-weight: bold;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+}
+
+/* Custom underline animation on hover for normal links */
+nav td:not(:last-child) a:hover::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px; /* Thick underline */
+    background-color: var(--underline-color);
+    transform: scaleX(0);
+    transition: transform 0.3s ease-out;
+    transform-origin: bottom right;
+    animation: underlineGrow 0.3s forwards;
+}
+
+@keyframes underlineGrow {
+    to {
+        transform: scaleX(1);
+        transform-origin: bottom left;
+    }
+}
+
+/* Bold and thick underlined text when active/clicked for normal links */
+nav td:not(:last-child) a:active,
+nav td:not(:last-child) a.active {
+    font-weight: bold;
+}
+
+/* Custom thick underline for active state for normal links */
+nav td:not(:last-child) a:active::after,
+nav td:not(:last-child) a.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px; /* Thicker underline for active state */
+    background-color: var(--active-underline);
+    transform: scaleX(1);
+}
+
+/* Special styling for the Register button */
+nav td:last-child a {
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    padding: 10px 20px; /* Larger padding */
+    border-radius: 6px; /* Slightly more rounded */
+    font-weight: bold;
+    box-shadow: 0 2px 4px var(--shadow-color);
+    transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+    display: inline-block; /* Prevent layout shifts */
+}
+
+nav td:last-child a:hover {
+    background-color: var(--button-hover-bg);
+    transform: translateY(-2px); /* Slight lift effect */
+    box-shadow: 0 4px 8px var(--shadow-hover-color);
+}
+
+/* Active state for Register button - NO underline */
+nav td:last-child a:active,
+nav td:last-child a.active {
+    background-color: var(--button-hover-bg);
+    transform: translateY(1px); /* Press effect */
+    box-shadow: 0 1px 2px var(--shadow-color);
+    /* No underline styling */
+}
+
+/* Main content area */
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px 20px;
+    color: var(--text-color);
+    flex: 1; /* Pushes the footer to the bottom */
+}
+
+h1 {
+    color: var(--heading-color);
+    font-size: 38px; /* Larger heading */
+    transition: color 0.3s ease;
+}
+
+/* Footer styles */
+.footer-content {
+    display: flex;
+    flex-direction: row; /* Align children in a row */
+    justify-content: center;
+    align-items: center; /* Vertically center items */
+    padding: 15px 40px; /* Reduced vertical padding */
+    background-color: var(--header-bg);
+    color: var(--nav-text);
+    gap: 50px; /* Further increased gap between Error/404 and social section (from 30px to 50px) */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Error and 404 Section */
+.error-section {
+    display: flex;
+    flex-direction: column; /* Stack Error and 404 vertically */
+    align-items: center; /* Center text horizontally */
+    text-align: center;
+}
+
+.error-section h2 {
+    font-size: 36px;
+    margin: 0; /* Remove default margin */
+}
+
+.error-section .footer-404 {
+    font-size: 60px;
+    font-weight: bold;
+    margin: 0; /* Remove default margin */
+}
+
+/* Social Media Links and Let's Connect Section */
+.social-section {
+    display: flex;
+    flex-direction: column; /* Stack images and "Let's Connect" vertically */
+    align-items: center; /* Center items horizontally */
+    gap: 8px; /* Space between images and text */
+}
+
+.footer-links {
+    display: flex;
+    gap: 20px; /* Space between social media icons */
+}
+
+/* Default size for social media icons */
+.footer-link img {
+    width: 30px;
+    height: 30px;
+    transition: transform 0.3s ease-out; /* Smooth transition for hover effect */
+}
+
+/* Custom size for the email icon */
+.email-icon {
+    width: 40px; /* Set width to 40px */
+    height: 30px; /* Set height to 30px */
+}
+
+/* Let's Connect text */
+.social-section h3 {
+    font-size: 24px;
+    margin: 0; /* Remove default margin */
+}
+
+/* Hover effect for footer links */
+.footer-link {
+    position: relative; /* For custom underline */
+    display: inline-block; /* Prevent layout shifts */
+    text-decoration: none;
+    color: var(--nav-text);
+    transition: color 0.4s cubic-bezier(0.215, 0.61, 0.355, 1); /* Smooth color transition */
+}
+
+.footer-link:hover {
+    color: var(--nav-text-hover);
+    font-weight: bold;
+}
+
+/* Custom underline animation on hover for footer links */
+.footer-link:hover::after {
+    content: '';
+    position: absolute;
+    bottom: -5px; /* Adjust position to align with the icon */
+    left: 0;
+    width: 100%;
+    height: 3px; /* Thick underline */
+    background-color: var(--underline-color);
+    transform: scaleX(0);
+    transition: transform 0.3s ease-out;
+    transform-origin: bottom right;
+    animation: underlineGrow 0.3s forwards;
+}
+
+@keyframes underlineGrow {
+    to {
+        transform: scaleX(1);
+        transform-origin: bottom left;
+    }
+}
+
+/* Active state for footer links */
+.footer-link:active {
+    font-weight: bold;
+}
+
+.footer-link:active::after {
+    content: '';
+    position: absolute;
+    bottom: -5px; /* Adjust position to align with the icon */
+    left: 0;
+    width: 100%;
+    height: 4px; /* Thicker underline for active state */
+    background-color: var(--active-underline);
+    transform: scaleX(1);
+}
+
+/* Hover effect for social media icons */
+.footer-link:hover img {
+    transform: translateY(-2px); /* Slight lift effect */
+}
+
+/* Active state for social media icons */
+.footer-link:active img {
+    transform: translateY(1px); /* Press effect */
+}
+
+/* Dark mode adjustments for images */
+[data-theme="dark"] .footer-link img {
+    filter: brightness(1.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .theme-toggle-container {
+        top: 10px;
+        right: 10px;
+    }
+    
+    .theme-toggle {
+        width: 32px;
+        height: 32px;
+        font-size: 16px;
+    }
+    
+    nav td {
+        padding: 5px 10px;
+    }
+    
+    nav a {
+        font-size: 18px;
+    }
+    
+    h1 {
+        font-size: 30px;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        gap: 20px;
+        padding: 15px 20px;
+    }
+}
+/* Tinder Container */
+.tinder-container {
+    display: flex;
+    gap: 30px;
+    height: calc(100vh - 250px);
+    min-height: 600px;
+    margin-top: 20px;
+}
+
+/* Photos Section */
+.photos-section {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-right: 15px;
+}
+
+.photo-container {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px var(--shadow-color);
+    transition: transform 0.3s ease;
+}
+
+.photo-container:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px var(--shadow-hover-color);
+}
+
+.profile-photo {
+    width: 100%;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.photo-container:hover .profile-photo {
+    transform: scale(1.03);
+}
+
+.photo-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 15px;
+    background: var(--overlay-bg);
+    color: white;
+}
+
+.photo-overlay h2 {
+    margin: 0 0 5px 0;
+    font-size: 24px;
+}
+
+.photo-overlay p {
+    margin: 0;
+    font-size: 16px;
+}
+
+/* Profile Section */
+.profile-section {
+    flex: 1;
+    background-color: var(--card-bg);
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 4px 12px var(--shadow-color);
+    display: flex;
+    flex-direction: column;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-header {
+    margin-bottom: 20px;
+}
+
+.profile-name {
+    margin: 0 0 8px 0;
+    color: var(--heading-color);
+    font-size: 32px;
+}
+
+.profile-location {
+    margin: 0;
+    font-size: 16px;
+    color: #777;
+}
+
+.profile-bio {
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.profile-bio h3 {
+    color: var(--heading-color);
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 22px;
+}
+
+.profile-bio p {
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* Interest Tags */
+.interest-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.interest-tag {
+    background-color: var(--tag-bg);
+    color: var(--tag-color);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.interest-tag:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Action Buttons */
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 25px;
+}
+
+.action-button {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.action-button:hover {
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.action-button:active {
+    transform: translateY(2px) scale(0.95);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.skip-button {
+    background-color: var(--skip-button-bg);
+    color: white;
+}
+
+.like-button {
+    background-color: var(--like-button-bg);
+    color: white;
+}
+
+/* Animation classes for swiping effect */
+.swipe-left {
+    animation: swipeLeft 0.5s forwards;
+}
+
+.swipe-right {
+    animation: swipeRight 0.5s forwards;
+}
+
+@keyframes swipeLeft {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(-200%);
+        opacity: 0;
+    }
+}
+
+@keyframes swipeRight {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(200%);
+        opacity: 0;
+    }
+}
+
+/* Match notification */
+.match-notification {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    background-color: var(--card-bg);
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.match-notification.show {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    visibility: visible;
+}
+
+.match-notification h2 {
+    font-size: 36px;
+    margin: 0 0 20px 0;
+    color: var(--heading-color);
+}
+
+.match-notification p {
+    margin: 0 0 30px 0;
+    font-size: 18px;
+}
+
+.match-notification button {
+    background-color: var(--like-button-bg);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.match-notification button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Loading indicator for new profiles */
+.loading-profiles {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    margin-top: 20px;
+}
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    border-left-color: var(--like-button-bg);
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Empty state */
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 30px;
+    text-align: center;
+}
+
+.empty-state h2 {
+    font-size: 28px;
+    margin: 0 0 15px 0;
+    color: var(--heading-color);
+}
+
+.empty-state p {
+    margin: 0 0 25px 0;
+    font-size: 16px;
+    max-width: 400px;
+}
+
+.empty-state button {
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px var(--shadow-color);
+}
+
+.empty-state button:hover {
+    background-color: var(--button-hover-bg);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px var(--shadow-hover-color);
+}
+
+/* Responsive styles */
+@media (max-width: 992px) {
+    .tinder-container {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .photos-section, .profile-section {
+        max-height: 500px;
+    }
+}
+
+@media (max-width: 768px) {
+    .action-button {
+        width: 60px;
+        height: 60px;
+        font-size: 24px;
+    }
+    
+    .profile-name {
+        font-size: 26px;
+    }
+    
+    .profile-bio h3 {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .photos-section, .profile-section {
+        max-height: 400px;
+    }
+    
+    .tinder-container {
+        gap: 15px;
+    }
+    
+    .action-buttons {
+        gap: 20px;
+    }
+}
+/* Update this in match.css */
+.photo-container.expanded {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px var(--shadow-color);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.photo-container.expanded .profile-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Hide other photo containers when one is expanded */
+.photo-container:not(.expanded) {
+    display: none;
+}
+/* Ensure the photos section and profile section are aligned */
+.tinder-container {
+    display: flex;
+    gap: 30px;
+    height: calc(100vh - 250px);
+    min-height: 600px;
+    margin-top: 20px;
+}
+
+.photos-section {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-right: 15px;
+}
+
+.profile-section {
+    flex: 1;
+    background-color: var(--card-bg);
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 4px 12px var(--shadow-color);
+    display: flex;
+    flex-direction: column;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+/* Filter section styling */
+.characteristics {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-122%);
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Reduced gap between items */
+    z-index: 100;
+    background-color: white;
+    padding: 12px; /* Reduced padding */
+    border-radius: 10px; /* Slightly reduced border radius */
+    box-shadow: 0 3px 10px var(--shadow-color);
+    border: 1px solid var(--tag-bg);
+    max-height: 220px; /* Fixed smaller height instead of viewport-based */
+    overflow-y: auto; 
+    scrollbar-width: thin;
+    scrollbar-color: var(--tag-color) transparent;
+    width: 200px; /* Doubled width */
+}
+
+/* Custom scrollbar for webkit browsers */
+.characteristics::-webkit-scrollbar {
+    width: 4px; /* Thinner scrollbar */
+}
+
+.characteristics::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.characteristics::-webkit-scrollbar-thumb {
+    background-color: var(--tag-color);
+    border-radius: 10px;
+}
+
+.characteristics:before {
+    content: "Filter By";
+    display: block;
+    font-weight: bold;
+    color: var(--heading-color);
+    margin-bottom: 8px; /* Reduced margin */
+    text-align: center;
+    font-size: 16px; /* Smaller font size */
+    border-bottom: 1px solid var(--tag-bg); /* Thinner border */
+    padding-bottom: 6px; /* Reduced padding */
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 2;
+}
+
+/* Dark mode adjustment for sticky header */
+[data-theme="dark"] .characteristics:before {
+    background-color: #1e1e1e;
+}
+
+.characteristics .interest-tag {
+    background-color: var(--tag-bg);
+    color: var(--tag-color);
+    padding: 6px 12px; /* Reduced padding */
+    border-radius: 15px; /* Smaller border radius */
+    font-size: 14px; /* Smaller font size */
+    font-weight: bold;
+    box-shadow: 0 1px 5px var(--shadow-color); /* Reduced shadow */
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.characteristics .interest-tag:after {
+    content: "✓";
+    margin-left: 6px; /* Reduced margin */
+    opacity: 0.7;
+    font-size: 12px; /* Smaller checkmark */
+}
+
+.characteristics .interest-tag:hover {
+    transform: translateX(3px); /* Reduced movement */
+    box-shadow: 0 2px 6px var(--shadow-hover-color);
+}
+
+.characteristics .interest-tag.active {
+    background-color: var(--like-button-bg);
+    color: white;
+}
+
+/* Dark mode adjustment for the white filter box */
+[data-theme="dark"] .characteristics {
+    background-color: #1e1e1e;
+    border-color: #213547;
+}
+
+/* Responsive adjustments for characteristics */
+@media (max-width: 1200px) {
+    .characteristics {
+        left: 10px;
+        padding: 10px;
+        width: 300px; /* Adjusted for medium screens */
+    }
+}
+
+@media (max-width: 992px) {
+    .characteristics {
+        position: static;
+        flex-direction: row;
+        transform: none;
+        padding: 10px 15px;
+        margin: 10px 0;
+        justify-content: center;
+        flex-wrap: wrap;
+        width: auto;
+        max-height: none;
+        overflow-y: visible;
+    }
+    
+    .characteristics:before {
+        width: 100%;
+        position: static;
+        margin-bottom: 5px;
+    }
+    
+    .characteristics .interest-tag:hover {
+        transform: translateY(-2px);
+    }
+}
+
+/* Extra Characteristics Section - Τοποθέτηση δίπλα από τις εικόνες */
+.match-characteristics {
+    position: absolute;
+    top: 50%; /* Το φέρνουμε στη μέση της οθόνης */
+    left: 20px; /* Μετακινείται αριστερά από τις εικόνες */
+    transform: translateY(-50%); /* Κεντράρει το πλαίσιο κάθετα */
+    width: 280px;
+    background-color: var(--card-bg);
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px var(--shadow-color);
+}
+
+/* Input field styling */
+.match-characteristics input {
+    width: calc(100% - 20px);
+    padding: 8px;
+    border: 2px solid var(--text-color);
+    border-radius: 5px;
+    outline: none;
+    font-size: 14px;
+}
+
+/* Highlighting the border when typing */
+.match-characteristics input:focus {
+    border-color: #0a192f; /* Σκούρο μπλε περίγραμμα */
+    box-shadow: 0 0 5px #0a192f;
+}
+
+/* Κείμενο τίτλου με πιο ευανάγνωστο μαύρο */
+.match-characteristics h3 {
+    color: #222; /* Πιο σκούρο αλλά όχι πολύ έντονο */
+    font-weight: normal;
+}
+
+/* List of characteristics */
+.characteristics-list {
+    margin-top: 10px;
+    padding: 0;
+    list-style-type: none;
+}
+
+.characteristics-list li {
+    background-color: var(--tag-bg);
+    color: var(--tag-color);
+    padding: 6px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Delete button for each characteristic */
+.characteristics-list li button {
+    background: none;
+    border: none;
+    color: var(--skip-button-bg);
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.characteristics-list li button:hover {
+    color: var(--header-bg);
+}
