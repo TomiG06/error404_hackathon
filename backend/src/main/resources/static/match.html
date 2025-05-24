@@ -10,41 +10,75 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <!-- Theme toggle button -->
-    <div class="theme-toggle-container">
-        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
-            <i class="fas fa-moon"></i>
-        </button>
-    </div>
-
-    <header>
-        <nav>
-            <table width="100%" border="0" cellpadding="10" cellspacing="0">
-                <tr>
-                    <td><a href="index.html">Home</a></td>
-                    <td><a href="about.html">About</a></td>
-                    <td><a href="match.html">Find Appartment</a></td>
-                    <td><a href="contact.html">Contact</a></td>
-                    <td align="right"><a href="registration.html">Register</a></td>
-                </tr>
-            </table>
+    <!-- Side Navigation -->
+    <aside class="side-nav">
+        <div class="side-nav-header">
+            <div class="side-nav-profile">
+                <div class="side-nav-avatar-letter">M</div>
+                <div class="side-nav-user-info">
+                    <span class="side-nav-user-name">Μαρία</span>
+                </div>
+            </div>
+        </div>
+        <nav class="side-nav-menu">
+            <a href="index.html" class="side-nav-link active"><i class="fas fa-home"></i><span>Home</span></a>
+            <a href="about.html" class="side-nav-link"><i class="fas fa-info-circle"></i><span>About</span></a>
+            <a href="match.html" class="side-nav-link"><i class="fas fa-building"></i><span>Find Roommate</span></a>
+            <a href="contact.html" class="side-nav-link"><i class="fas fa-envelope"></i><span>Contact</span></a>
+            <a href="registration.html" class="side-nav-link"><i class="fas fa-user-plus"></i><span>Register</span></a>
         </nav>
-    </header>
-
+        <div class="side-nav-footer">
+            <div class="side-nav-notifications">
+                <i class="fas fa-bell"></i>
+                <span>Notifications</span>
+                <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </div>
+    </aside>
     <main>
+        <!-- Filter Header -->
+        <div class="filter-header">
+            <div class="filter-title">
+                <i class="fas fa-filter"></i>
+                <span>Filters</span>
+            </div>
+            <div class="filter-controls">
+                <button type="button" class="filter-toggle" aria-label="Toggle filters">
+                    <i class="fas fa-chevron-up"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Filter Window -->
+        <div class="characteristics">
+            <div class="filter-tags">
+                <span class="interest-tag">Early Bird</span>
+                <span class="interest-tag">Night Owl</span>
+                <span class="interest-tag">Clean Freak</span>
+                <span class="interest-tag">Social Butterfly</span>
+                <span class="interest-tag">Homebody</span>
+                <span class="interest-tag">Fitness Enthusiast</span>
+                <span class="interest-tag">Music Lover</span>
+                <span class="interest-tag">Bookworm</span>
+            </div>
+        </div>
+
         <div class="tinder-container">
             <!-- Left side: Photos section -->
             <div class="photos-section">
                 <div class="photo-container">
-                    <img src="download (2).jpg" alt="Profile 1" class="profile-photo">
+                    <img src="download (2).png" alt="Profile 1" class="profile-photo">
                     <div class="photo-overlay">
-                        <h2>Jane Doe, 28</h2>
-                        <p>5 miles away</p>
+                        <h2>Μαρία Λαπατα, 19</h2>
+                        <p>CSE student</p>
                     </div>
                     <button class="close-button" aria-label="Close expanded photo">×</button>
                 </div>
                 <div class="photo-container">
-                    <img src="download.jpg" alt="Profile 2" class="profile-photo">
+                    <img src="download (2).jpg" alt="Profile 2" class="profile-photo">
                     <div class="photo-overlay">
                         <h2>John Smith, 32</h2>
                         <p>3 miles away</p>
@@ -52,7 +86,7 @@
                     <button class="close-button" aria-label="Close expanded photo">×</button>
                 </div>
                 <div class="photo-container">
-                    <img src="download (1).jpg" alt="Profile 3" class="profile-photo">
+                    <img src="download (3).jpg" alt="Profile 3" class="profile-photo">
                     <div class="photo-overlay">
                         <h2>Emily Johnson, 26</h2>
                         <p>7 miles away</p>
@@ -60,7 +94,7 @@
                     <button class="close-button" aria-label="Close expanded photo">×</button>
                 </div>
                 <div class="photo-container">
-                    <img src="download(3).jpg" alt="Profile 4" class="profile-photo">
+                    <img src="download (4).jpg" alt="Profile 4" class="profile-photo">
                     <div class="photo-overlay">
                         <h2>Michael Brown, 30</h2>
                         <p>2 miles away</p>
@@ -68,7 +102,7 @@
                     <button class="close-button" aria-label="Close expanded photo">×</button>
                 </div>
                 <div class="photo-container">
-                    <img src="download (4).jpg" alt="Profile 5" class="profile-photo">
+                    <img src="download (5).jpg" alt="Profile 5" class="profile-photo">
                     <div class="photo-overlay">
                         <h2>Sarah Wilson, 27</h2>
                         <p>8 miles away</p>
@@ -77,11 +111,11 @@
                 </div>
             </div>
 
-            <!-- Right side: Profile description -->
+            <!-- Middle: Profile description -->
             <div class="profile-section">
                 <div class="profile-header">
-                    <h2 class="profile-name">Jane Doe, 28</h2>
-                    <p class="profile-location"><i class="fas fa-map-marker-alt"></i> 5 miles away</p>
+                    <h2 class="profile-name">Μαρία Λαπατα, 19</h2>
+                    <p class="profile-location"><i class="fas fa-map-marker-alt"></i> CSE student</p>
                 </div>
 
                 <div class="profile-bio">
@@ -108,53 +142,13 @@
                 </div>
             </div>
         </div>
-
-        <!-- Characteristics-->
-        <div class="characteristics">
-            <span class="interest-tag">Woman Wanted</span>
-            <span class="interest-tag">Close to Uni</span>
-            <span class="interest-tag">Modern</span>
-            <span class="interest-tag">Fully furnished</span>
-            <span class="interest-tag">Balcony</span>
-            <span class="interest-tag">Quiet neighborhood</span>
-            <span class="interest-tag">Budget-friendly</span>
-            <span class="interest-tag">Male wanted</span>
-        </div>
-
-        <!--Extras-->
-        <div id="match-characteristics">
-            <h2>More Characteristics:</h2>
-            <input type="text" id="featureInput" placeholder="Type here...">
-            <button onclick="addFeature()">Add</button>
-            <ul id="feature-list"></ul>
-        </div>
     </main>
-
-    <footer class="footer-content">
-        <!-- Error and 404 Section -->
-        <div class="error-section">
-            <h2>Error</h2>
-            <div class="footer-404">404</div>
-        </div>
-
-        <div class="social-section">
-            <div class="footer-links">
-                <a href="mailto:example@example.com" class="footer-link">
-                    <img src="email.png" alt="email" class="email-icon" style="width: 40px; height:30px;">
-                </a>
-                <a href="https://www.instagram.com" class="footer-link">
-                    <img src="instagram.png" alt="instagram">
-                </a>
-                <a href="https://www.linkedin.com" class="footer-link">
-                    <img src="linkedin.png" alt="linkedin">
-                </a>
-            </div>
-            <h3>Let's Connect</h3>
-        </div>
-    </footer>
     <script src="extras.js"></script>
     <script src="index.js"></script>
     <script src="theme-toggle.js"></script>
     <script src="match.js"></script>
+    <script src="filter-window.js"></script>
+    <script src="burger-menu.js"></script>
+    <script src="filter-header.js"></script>
 </body>
 </html>

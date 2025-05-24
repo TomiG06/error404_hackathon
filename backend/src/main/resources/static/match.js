@@ -3,33 +3,33 @@ document.addEventListener('DOMContentLoaded', function () {
     const profiles = [
         {
             name: "Μαρία Λαπατα, 19",
-            location: "5 miles away from Univercity of Ioannina, 250$ per month",
-            bio: "Ευρίχορο, Μοντερνο, Ανεκενισμενο, Επιπλομενο μερικος, Φοιτιτης, Γυναικα, Προτιμηση γυναικα συγγατικο, ",
-            interests: ["Close to Uni", "Cheap", "Woman wanted", "Modern", "semi-furnished"]
+            location: "CSE student at University of Ioannina",
+            bio: "Early riser who loves starting the day with yoga and meditation. Enjoys cooking healthy meals and spending weekends exploring nature. Looking for someone who shares similar lifestyle habits.",
+            interests: ["Early Bird", "Fitness Enthusiast", "Clean Freak", "Nature Lover", "Cooking"]
         },
         {
             name: "Αλέξανδρος Παππάς, 21",
-            location: "3 miles away from Aristotle University of Thessaloniki, 300$ per month",
-            bio: "Μικρό διαμέρισμα, Άνετο, Πλήρως επιπλωμένο, Φοιτητής, Άνδρας, Προτιμώ άνδρα συγκάτοικο",
-            interests: ["Close to Uni", "Fully furnished", "Male wanted", "Quiet neighborhood", "Budget-friendly"]
+            location: "Computer Science student at Aristotle University",
+            bio: "Night owl who enjoys coding late into the night. Loves playing guitar and hosting small gatherings. Prefers a clean and organized living space.",
+            interests: ["Night Owl", "Music Lover", "Social Butterfly", "Clean Freak", "Tech Enthusiast"]
         },
         {
             name: "Ειρήνη Κωνσταντίνου, 22",
-            location: "2 miles away from National Technical University of Athens, 280$ per month",
-            bio: "Μεγάλο δωμάτιο σε διαμέρισμα, Μοντέρνο, Ησυχία, Μερικώς επιπλωμένο, Φοιτήτρια, Γυναίκα, Ανοιχτή σε οποιοδήποτε φύλο συγκάτοικο",
-            interests: ["Close to Uni", "Spacious", "Modern", "Quiet area", "Shared expenses"]
+            location: "Architecture student at NTUA",
+            bio: "Creative soul who loves art and design. Enjoys quiet evenings with a good book and occasional social gatherings. Maintains a balanced lifestyle with regular exercise.",
+            interests: ["Bookworm", "Fitness Enthusiast", "Creative", "Social Butterfly", "Early Bird"]
         },
         {
             name: "Ελένη Παπαδοπούλου, 21",
-            location: "4 miles away from Democritus University of Thrace, 250$ per month",
-            bio: "Μικρό διαμέρισμα, Απλό, Μερικώς επιπλωμένο, Φοιτήτρια, Γυναίκα, Ανοιχτή σε οποιοδήποτε φύλο συγκάτοικο",
-            interests: ["Simple", "Close to Uni", "Budget-friendly", "Shared bills", "Quiet area"]
+            location: "Medical student at Democritus University",
+            bio: "Dedicated student who balances study time with self-care. Enjoys cooking, reading, and occasional movie nights. Values cleanliness and organization.",
+            interests: ["Clean Freak", "Bookworm", "Homebody", "Early Bird", "Cooking"]
         },
         {
             name: "Ανδρέας Γεωργίου, 23",
-            location: "5 miles away from Ionian University, 300$ per month",
-            bio: "Διαμέρισμα με μπαλκόνι, Μοντέρνο, Πλήρως επιπλωμένο, Φοιτητής, Άνδρας, Προτιμώ άνδρα συγκάτοικο",
-            interests: ["Balcony", "Modern", "Fully furnished", "Close to Uni", "Male wanted"]
+            location: "Business student at Ionian University",
+            bio: "Active lifestyle enthusiast who enjoys sports and outdoor activities. Social and outgoing, loves meeting new people. Maintains a clean and organized living space.",
+            interests: ["Fitness Enthusiast", "Social Butterfly", "Clean Freak", "Early Bird", "Sports Lover"]
         }
     ];
 
@@ -65,6 +65,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Function to handle swiping (left for skip, right for like)
     function handleSwipe(direction) {
         const currentPhoto = photoContainers[currentProfileIndex];
+        const nextPhoto = photoContainers[(currentProfileIndex + 1) % profiles.length];
         const currentProfile = profiles[currentProfileIndex];
 
         // Add the appropriate animation class
@@ -72,16 +73,25 @@ document.addEventListener('DOMContentLoaded', function () {
             currentPhoto.classList.add('swipe-left');
         } else {
             currentPhoto.classList.add('swipe-right');
-            
             // Send like to backend
             sendLikeToBackend(currentProfile, currentProfileIndex);
         }
 
-        // After animation completes, move to next profile
-        setTimeout(() => {
-            // Remove animation class
-            currentPhoto.classList.remove('swipe-left', 'swipe-right');
+        // Prepare next photo before animation completes
+        nextPhoto.style.display = 'block';
+        nextPhoto.style.opacity = '0';
 
+        // After animation starts, begin transitioning to next photo
+        setTimeout(() => {
+            currentPhoto.style.opacity = '0';
+            nextPhoto.style.opacity = '1';
+        }, 100); // Faster transition
+
+        // After animation completes, clean up and update
+        setTimeout(() => {
+            // Remove animation classes
+            currentPhoto.classList.remove('swipe-left', 'swipe-right');
+            
             // Move to next profile with wrap-around
             currentProfileIndex = (currentProfileIndex + 1) % profiles.length;
 
@@ -91,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Show feedback message
             showFeedbackMessage(direction);
-        }, 500); // Should match animation duration
+        }, 300); // Match animation duration
     }
 
     // Function to send like data to the backend
@@ -213,30 +223,45 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Function to expand the current photo to match the profile section size
     function expandCurrentPhoto() {
-        // Remove expanded class from all photos and display them none
-        photoContainers.forEach(container => {
-            container.classList.remove('expanded');
-            container.style.display = 'none';
-        });
-
         // Get the current photo container
         const currentPhoto = photoContainers[currentProfileIndex];
+        const nextPhoto = photoContainers[(currentProfileIndex + 1) % profiles.length];
         
         // Get the dimensions of the profile section
         const profileSectionRect = profileSection.getBoundingClientRect();
         
-        // Display the current photo
-        currentPhoto.style.display = 'block';
+        // Prepare all photos
+        photoContainers.forEach((container, index) => {
+            if (index === currentProfileIndex) {
+                // Current photo
+                container.style.display = 'block';
+                container.style.opacity = '1';
+                container.style.position = 'relative';
+                container.style.zIndex = '2';
+            } else if (index === (currentProfileIndex + 1) % profiles.length) {
+                // Next photo (preload)
+                container.style.display = 'block';
+                container.style.opacity = '0';
+                container.style.position = 'absolute';
+                container.style.top = '0';
+                container.style.left = '0';
+                container.style.zIndex = '1';
+            } else {
+                // Other photos
+                container.style.display = 'none';
+                container.style.opacity = '0';
+                container.style.zIndex = '0';
+            }
+        });
         
-        // Add the expanded class
-        currentPhoto.classList.add('expanded');
-        
-        // Set the size to match the profile section
-        currentPhoto.style.width = `${profileSectionRect.width}px`;
-        currentPhoto.style.height = `${profileSectionRect.height}px`;
-        
-        // Ensure the photo is visible in the photos section
-        photoContainers[0].scrollIntoView({ behavior: 'smooth' });
+        // Set dimensions for both current and next photo
+        [currentPhoto, nextPhoto].forEach(photo => {
+            if (photo) {
+                photo.style.width = `${profileSectionRect.width}px`;
+                photo.style.height = `${profileSectionRect.height}px`;
+                photo.style.transition = 'opacity 0.3s ease';
+            }
+        });
     }
 
     // Function to show feedback message after swipe
@@ -264,7 +289,7 @@ document.addEventListener('DOMContentLoaded', function () {
             fontWeight: 'bold',
             zIndex: '1000',
             opacity: '0',
-            transition: 'opacity 0.3s ease'
+            transition: 'opacity 0.2s ease' // Faster transition
         });
 
         // Add to DOM
@@ -274,14 +299,14 @@ document.addEventListener('DOMContentLoaded', function () {
         setTimeout(() => {
             message.style.opacity = '1';
 
-            // Hide and remove after 2 seconds
+            // Hide and remove after 1.5 seconds (faster feedback)
             setTimeout(() => {
                 message.style.opacity = '0';
                 setTimeout(() => {
                     document.body.removeChild(message);
-                }, 300);
-            }, 2000);
-        }, 100);
+                }, 200); // Faster removal
+            }, 1500);
+        }, 50); // Faster initial show
     }
 
     // Add keyboard controls
