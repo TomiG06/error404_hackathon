@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en" data-theme="">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="../../css/pages/index.css" />
+    <link rel="stylesheet" href="../../css/pages/match.css" />
+    <link rel="stylesheet" href="../../css/pages/contact.css" />
+    <!-- Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <!-- Inter font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Side Navigation -->
+    <aside class="side-nav">
+      <div class="side-nav-header">
+        <div class="side-nav-profile">
+          <div class="side-nav-avatar-letter">G</div>
+          <div class="side-nav-user-info">
+            <span class="side-nav-user-name">Guest</span>
+          </div>
+        </div>
+      </div>
+      <nav class="side-nav-menu">
+        <a href="../public/index.html" class="side-nav-link"
+          ><i class="fas fa-home"></i><span>Home</span></a
+        >
+        <a href="../public/about.html" class="side-nav-link"
+          ><i class="fas fa-info-circle"></i><span>About</span></a
+        >
+        <a href="../public/match.html" class="side-nav-link"
+          ><i class="fas fa-building"></i><span>Find Roommate</span></a
+        >
+        <a href="../public/contact.html" class="side-nav-link active"
+          ><i class="fas fa-envelope"></i><span>Contact</span></a
+        >
+        <a href="../auth/registration.html" class="side-nav-link"
+          ><i class="fas fa-user-plus"></i><span>Register</span></a
+        >
+      </nav>
+      <div class="side-nav-footer">
+        <div class="side-nav-logo">
+          <img
+            src="../assets/images/ui/unimates.svg"
+            alt="Unimates Logo"
+            class="logo-image"
+          />
+        </div>
+        <div class="side-nav-notifications">
+          <i class="fas fa-bell"></i>
+          <span>Notifications</span>
+          <label class="switch">
+            <input type="checkbox" checked />
+            <span class="slider round"></span>
+          </label>
+        </div>
+      </div>
+    </aside>
+
+    <main>
+      <h1>Contact Us</h1>
+      <p>
+        We'd love to hear from you! Please fill out the form below to get in
+        touch.
+      </p>
+
+      <!-- Contact Form -->
+      <form action="#" method="post">
+        <div>
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" required />
+        </div>
+        <div>
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+        <div>
+          <label for="subject">Subject:</label>
+          <input type="text" id="subject" name="subject" required />
+        </div>
+        <div>
+          <label for="message">Message:</label>
+          <textarea id="message" name="message" rows="5" required></textarea>
+        </div>
+        <div>
+          <button type="submit">Send Message</button>
+        </div>
+      </form>
+    </main>
+
+    <!-- Legal Footer -->
+    <footer class="legal-footer">
+      <div class="legal-content">
+        <p>
+          &copy; 2024 Unimates. All rights reserved. |
+          <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+        </p>
+      </div>
+    </footer>
+
+    <footer class="footer-content">
+      <!-- Error and 404 Section -->
+      <div class="error-section">
+        <h2>Error</h2>
+        <div class="footer-404">404</div>
+      </div>
+
+      <!-- Social Media Links and Let's Connect Section -->
+      <div class="social-section">
+        <div class="footer-links">
+          <a href="mailto:example@example.com" class="footer-link">
+            <img
+              src="../assets/images/ui/email.png"
+              alt="email"
+              class="email-icon"
+              style="width: 40px; height: 30px"
+            />
+          </a>
+          <a href="https://www.instagram.com" class="footer-link">
+            <img src="../assets/images/ui/instagram.png" alt="instagram" />
+          </a>
+          <a href="https://www.linkedin.com" class="footer-link">
+            <img src="../assets/images/ui/linkedin.png" alt="linkedin" />
+          </a>
+        </div>
+        <h3>Let's Connect</h3>
+      </div>
+    </footer>
+    <script src="../js/components/theme-toggle.js"></script>
+    <script src="../js/pages/index.js"></script>
+    <script src="../js/components/burger-menu.js"></script>
+  </body>
+</html>

@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en" data-theme="">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Find Roommate - Unimates</title>
+    <link rel="stylesheet" href="../css/pages/index.css" />
+    <link rel="stylesheet" href="../../css/pages/match.css" />
+    <link rel="stylesheet" href="../css/pages/registration.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Theme toggle button -->
+    <div class="theme-toggle-container">
+      <button
+        id="theme-toggle"
+        class="theme-toggle"
+        aria-label="Toggle dark mode"
+      >
+        <i class="fas fa-moon"></i>
+      </button>
+    </div>
+
+    <header>
+      <nav>
+        <table width="100%" border="0" cellpadding="10" cellspacing="0">
+          <tr>
+            <td><a href="../dashboard/index.html">Home</a></td>
+            <td><a href="../public/about.html">About</a></td>
+            <td><a href="services.html">Services</a></td>
+            <td><a href="../public/contact.html">Contact</a></td>
+            <!-- Placeholder for Register button or user circle -->
+            <td align="right" id="user-register-td"></td>
+          </tr>
+        </table>
+      </nav>
+    </header>
+
+    <!-- Side Navigation -->
+    <aside class="side-nav">
+      <div class="side-nav-header">
+        <div class="side-nav-profile">
+          <div class="side-nav-avatar-letter">G</div>
+          <div class="side-nav-user-info">
+            <span class="side-nav-user-name">Guest</span>
+          </div>
+        </div>
+      </div>
+      <nav class="side-nav-menu">
+        <a href="../dashboard/index.html" class="side-nav-link"
+          ><i class="fas fa-home"></i><span>Home</span></a
+        >
+        <a href="../public/about.html" class="side-nav-link"
+          ><i class="fas fa-info-circle"></i><span>About</span></a
+        >
+        <a href="../dashboard/match.html" class="side-nav-link active"
+          ><i class="fas fa-building"></i><span>Find Roommate</span></a
+        >
+        <a href="../public/contact.html" class="side-nav-link"
+          ><i class="fas fa-envelope"></i><span>Contact</span></a
+        >
+        <a href="../dashboard/profile.html" class="side-nav-link"
+          ><i class="fas fa-user"></i><span>Profile</span></a
+        >
+      </nav>
+      <div class="side-nav-footer">
+        <div class="side-nav-logo">
+          <img
+            src="../assets/images/ui/unimates.svg"
+            alt="Unimates Logo"
+            class="logo-image"
+          />
+        </div>
+        <div class="side-nav-notifications">
+          <i class="fas fa-bell"></i>
+          <span>Notifications</span>
+          <label class="switch">
+            <input type="checkbox" checked />
+            <span class="slider round"></span>
+          </label>
+        </div>
+      </div>
+    </aside>
+
+    <main class="match-main">
+      <div class="match-container">
+        <div class="match-header">
+          <h1>Find Your Perfect Roommate</h1>
+          <p>Browse through potential matches based on your preferences</p>
+        </div>
+
+        <div class="match-filters">
+          <div class="filter-group">
+            <label for="university">University</label>
+            <select id="university" class="filter-select">
+              <option value="">All Universities</option>
+              <option value="uoi">University of Ioannina</option>
+              <option value="auth">Aristotle University of Thessaloniki</option>
+              <option value="ntua">
+                National Technical University of Athens
+              </option>
+              <option value="duth">Democritus University of Thrace</option>
+              <option value="ionio">Ionian University</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label for="preferences">Preferences</label>
+            <select id="preferences" class="filter-select">
+              <option value="">All Preferences</option>
+              <option value="quiet">Quiet Study Environment</option>
+              <option value="social">Social Environment</option>
+              <option value="balanced">Balanced</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label for="budget">Budget Range</label>
+            <select id="budget" class="filter-select">
+              <option value="">Any Budget</option>
+              <option value="low">€200-€300</option>
+              <option value="medium">€301-€400</option>
+              <option value="high">€401+</option>
+            </select>
+          </div>
+
+          <button class="filter-button" onclick="applyFilters()">
+            <i class="fas fa-filter"></i>
+            Apply Filters
+          </button>
+        </div>
+
+        <div class="match-results">
+          <div class="results-header">
+            <h2>Potential Matches</h2>
+            <div class="results-count">
+              Showing <span id="matchCount">0</span> matches
+            </div>
+          </div>
+
+          <div class="match-cards" id="matchCards">
+            <!-- Match cards will be dynamically added here -->
+          </div>
+        </div>
+
+        <div class="match-actions">
+          <button class="action-button primary" onclick="refreshMatches()">
+            <i class="fas fa-sync-alt"></i>
+            Refresh Matches
+          </button>
+          <button class="action-button secondary" onclick="updatePreferences()">
+            <i class="fas fa-sliders-h"></i>
+            Update Preferences
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <!-- Legal Footer -->
+    <footer class="legal-footer">
+      <div class="legal-content">
+        <p>
+          &copy; 2024 Unimates. All rights reserved. |
+          <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+        </p>
+      </div>
+    </footer>
+
+    <footer class="footer-content">
+      <!-- Error and 404 Section -->
+      <div class="error-section">
+        <h2>Error</h2>
+        <div class="footer-404">404</div>
+      </div>
+
+      <!-- Social Media Links and Let's Connect Section -->
+      <div class="social-section">
+        <div class="footer-links">
+          <a href="mailto:example@example.com" class="footer-link">
+            <img
+              src="../assets/images/ui/email.png"
+              alt="email"
+              class="email-icon"
+              style="width: 40px; height: 30px"
+            />
+          </a>
+          <a href="https://www.instagram.com" class="footer-link">
+            <img src="../assets/images/ui/instagram.png" alt="instagram" />
+          </a>
+          <a href="https://www.linkedin.com" class="footer-link">
+            <img src="../assets/images/ui/linkedin.png" alt="linkedin" />
+          </a>
+        </div>
+        <h3>Let's Connect</h3>
+      </div>
+    </footer>
+
+    <!-- Match Card Template -->
+    <template id="matchCardTemplate">
+      <div class="match-card">
+        <div class="match-card-header">
+          <div class="match-avatar">
+            <span class="avatar-letter"></span>
+          </div>
+          <div class="match-info">
+            <h3 class="match-name"></h3>
+            <p class="match-university"></p>
+          </div>
+          <div class="match-actions">
+            <button class="match-action like">
+              <i class="fas fa-heart"></i>
+            </button>
+            <button class="match-action message">
+              <i class="fas fa-comment"></i>
+            </button>
+          </div>
+        </div>
+        <div class="match-details">
+          <div class="match-preference">
+            <i class="fas fa-home"></i>
+            <span class="preference-text"></span>
+          </div>
+          <div class="match-budget">
+            <i class="fas fa-euro-sign"></i>
+            <span class="budget-text"></span>
+          </div>
+        </div>
+        <div class="match-compatibility">
+          <div class="compatibility-bar">
+            <div class="compatibility-fill"></div>
+          </div>
+          <span class="compatibility-text"></span>
+        </div>
+      </div>
+    </template>
+
+    <script src="../js/components/theme-toggle.js"></script>
+    <script src="../js/pages/match-dashboard.js"></script>
+    <script src="../js/components/burger-menu.js"></script>
+    <script src="../js/components/side-menu.js"></script>
+  </body>
+</html>

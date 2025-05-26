@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en" data-theme="">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registration - Unimates</title>
+    <link rel="stylesheet" href="../css/pages/index.css" />
+    <link rel="stylesheet" href="../css/pages/match.css" />
+    <link rel="stylesheet" href="../../css/pages/registration.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Side Navigation -->
+    <aside class="side-nav">
+      <div class="side-nav-header">
+        <div class="side-nav-profile">
+          <div class="side-nav-avatar-letter">G</div>
+          <div class="side-nav-user-info">
+            <span class="side-nav-user-name">Guest</span>
+          </div>
+        </div>
+      </div>
+      <nav class="side-nav-menu">
+        <a href="../public/index.html" class="side-nav-link"
+          ><i class="fas fa-home"></i><span>Home</span></a
+        >
+        <a href="../public/about.html" class="side-nav-link"
+          ><i class="fas fa-info-circle"></i><span>About</span></a
+        >
+        <a href="../public/match.html" class="side-nav-link"
+          ><i class="fas fa-building"></i><span>Find Roommate</span></a
+        >
+        <a href="../public/contact.html" class="side-nav-link"
+          ><i class="fas fa-envelope"></i><span>Contact</span></a
+        >
+        <a href="../auth/registration.html" class="side-nav-link active"
+          ><i class="fas fa-user-plus"></i><span>Register</span></a
+        >
+      </nav>
+      <div class="side-nav-footer">
+        <div class="side-nav-logo">
+          <img
+            src="../assets/images/ui/unimates.svg"
+            alt="Unimates Logo"
+            class="logo-image"
+          />
+        </div>
+        <div class="side-nav-notifications">
+          <i class="fas fa-bell"></i>
+          <span>Notifications</span>
+          <label class="switch">
+            <input type="checkbox" checked />
+            <span class="slider round"></span>
+          </label>
+        </div>
+      </div>
+    </aside>
+
+    <main class="registration-main">
+      <div class="registration-container">
+        <div class="registration-header">
+          <h1>Create Account</h1>
+          <p>Join Unimates to find your perfect roommate match</p>
+        </div>
+
+        <form
+          id="registrationForm"
+          class="registration-form"
+          onsubmit="return false;"
+        >
+          <div class="form-group">
+            <label for="username">
+              <i class="fas fa-user"></i>
+              Username
+            </label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              required
+              placeholder="Choose a username"
+              autocomplete="username"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="email">
+              <i class="fas fa-envelope"></i>
+              Email
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              placeholder="Enter your email"
+              autocomplete="email"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="password">
+              <i class="fas fa-lock"></i>
+              Password
+            </label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              required
+              placeholder="Create a password"
+              autocomplete="new-password"
+            />
+            <div class="password-strength"></div>
+          </div>
+
+          <div class="form-group">
+            <label for="confirm-password">
+              <i class="fas fa-lock"></i>
+              Confirm Password
+            </label>
+            <input
+              type="password"
+              id="confirm-password"
+              name="confirm-password"
+              required
+              placeholder="Confirm your password"
+              autocomplete="new-password"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="university">
+              <i class="fas fa-university"></i>
+              University
+            </label>
+            <select id="university" name="university" required>
+              <option value="">Select your university</option>
+              <option value="uoi">University of Ioannina</option>
+              <option value="auth">Aristotle University of Thessaloniki</option>
+              <option value="ntua">
+                National Technical University of Athens
+              </option>
+              <option value="duth">Democritus University of Thrace</option>
+              <option value="ionio">Ionian University</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="checkbox-label">
+              <input type="checkbox" required />
+              I agree to the <a href="#">Terms of Service</a> and
+              <a href="#">Privacy Policy</a>
+            </label>
+          </div>
+
+          <button
+            type="submit"
+            class="register-button"
+            onclick="handleRegistration(event)"
+          >
+            <i class="fas fa-user-plus"></i>
+            Create Account
+          </button>
+
+          <div class="divider">or</div>
+
+          <div class="social-login">
+            <div class="social-buttons">
+              <button type="button" class="social-button">
+                <i class="fab fa-google"></i>
+                Google
+              </button>
+              <button type="button" class="social-button">
+                <i class="fab fa-facebook-f"></i>
+                Facebook
+              </button>
+            </div>
+          </div>
+
+          <div class="login-link">
+            Already have an account? <a href="../public/index.html">Log in</a>
+          </div>
+        </form>
+      </div>
+    </main>
+
+    <script>
+      // Prevent form from submitting traditionally
+      document
+        .getElementById("registrationForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+        });
+
+      // Handle registration via JavaScript
+      function handleRegistration(event) {
+        event.preventDefault();
+        const form = document.getElementById("registrationForm");
+        const formData = new FormData(form);
+
+        // Convert FormData to JSON
+        const userData = {
+          username: formData.get("username"),
+          email: formData.get("email"),
+          password: formData.get("password"),
+          university: formData.get("university"),
+        };
+
+        // Store in localStorage
+        localStorage.setItem(
+          "userData",
+          JSON.stringify({
+            ...userData,
+            id: Date.now(),
+            isLoggedIn: true,
+            registeredAt: new Date().toISOString(),
+          }),
+        );
+
+        // Update side menu
+        if (typeof updateSideMenu === "function") {
+          updateSideMenu();
+        }
+
+        // Show success message
+        const statusMessage = document.createElement("div");
+        statusMessage.className = "status-message success";
+        statusMessage.textContent = "Registration successful! Redirecting...";
+        form.appendChild(statusMessage);
+
+        // Redirect after a short delay
+        setTimeout(() => {
+          window.location.href = "index-logedin.html";
+        }, 1500);
+      }
+    </script>
+
+    <script src="../js/components/theme-toggle.js"></script>
+    <script src="../js/pages/index.js"></script>
+    <script src="../js/pages/registration.js"></script>
+    <script src="../js/components/burger-menu.js"></script>
+    <script src="../js/components/side-menu.js"></script>
+  </body>
+</html>
